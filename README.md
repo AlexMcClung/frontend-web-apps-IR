@@ -7,5 +7,5 @@
     - [App](https://alexmcclung.github.io/frontend-web-apps-IR/quarto/)
     - [Code](#)
 - Example 3: marimo Python
-    - [App](https://alexmcclung.github.io/frontend-web-apps-IR/quarto/)
+    - [App](https://alexmcclung.github.io/frontend-web-apps-IR/marimo/)
     - [Code](#)
