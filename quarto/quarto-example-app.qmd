@@ -1,5 +1,5 @@
 ---
-title: "Quarto Example App"
+title: "Quarto App Example"
 format: html
 embed-resources: true
 execute:
@@ -16,6 +16,8 @@ library(DT)
 df <- read_csv('iris.csv')
 
 ```
+
+For more information, visit [quarto.org](https://quarto.org).
 
 :::{.panel-tabset}
 
@@ -43,7 +45,7 @@ plot_ly(df, x = ~Petal.Length, y = ~Petal.Width, color = ~Species, type = 'scatt
 
 ```{r}
 
-datatable(df %>% relocate(Species), rownames = FALSE)
+datatable(df %>% relocate(Species), rownames = FALSE, options = list(pageLength = 5))
 
 ```
 
