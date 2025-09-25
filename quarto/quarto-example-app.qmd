@@ -1,0 +1,49 @@
+---
+title: "Quarto Example App"
+format: html
+embed-resources: true
+execute:
+  echo: false
+  warning: false
+  message: false
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(DT)
+
+df <- read_csv('iris.csv')
+
+```
+
+:::{.panel-tabset}
+
+## Sepal
+
+```{r}
+
+plot_ly(df, x = ~Sepal.Length, y = ~Sepal.Width, color = ~Species, type = 'scatter', mode = 'markers') %>%
+  layout(title = "Iris Sepal Dimensions")
+
+```
+
+## Petal
+
+```{r}
+
+plot_ly(df, x = ~Petal.Length, y = ~Petal.Width, color = ~Species, type = 'scatter', mode = 'markers') %>%
+  layout(title = "Iris Petal Dimensions")
+
+```
+
+:::
+
+<br>
+
+```{r}
+
+datatable(df %>% relocate(Species), rownames = FALSE)
+
+```
+
