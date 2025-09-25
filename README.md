@@ -2,10 +2,10 @@
 
 - Example 1: Quarto and R
     - [App](https://alexmcclung.github.io/frontend-web-apps-IR/quarto/)
-    - [Code](https://github.com/AlexMcClung/frontend-web-apps-IR/blob/main/quarto/quarto-example-app.qmd)
+    - [Code](https://github.com/AlexMcClung/frontend-web-apps-IR/blob/main/quarto/quarto-app-example.qmd)
 - Example 2: Observable Framework
-    - [App](https://alexmcclung.github.io/frontend-web-apps-IR/quarto/)
-    - [Code](#)
+    - [App](https://alexmcclung.github.io/frontend-web-apps-IR/framework/)
+    - [Code](https://github.com/AlexMcClung/frontend-web-apps-IR/blob/main/framework/framework-app-example.md)
 - Example 3: marimo Python
     - [App](https://alexmcclung.github.io/frontend-web-apps-IR/marimo/)
-    - [Code](#)
+    - [Code](https://github.com/AlexMcClung/frontend-web-apps-IR/blob/main/marimo/marimo-app-example.py)
