@@ -1,0 +1,106 @@
+---
+title: "Degree Completions by Level and Subgroup"
+format: 
+  html:
+    include-in-header: 
+      - text: 
+          <link rel="icon" href="icons8-graduation-cap-30.png" type="image/png"/>
+embed-resources: true
+execute: 
+  echo: false
+---
+
+```{r include=FALSE}
+library(tidyverse)
+library(plotly)
+
+# Import data
+df_gender <- read_csv("data_gender.csv")
+df_citz <- read_csv("data_citz.csv")
+
+# Function to produce bar charts
+plotFunction <- function(data, degreeLevel) {
+  fig <- plot_ly(
+    data %>% filter(Level == degreeLevel),
+    x = ~Year,
+    y = ~Degrees,
+    color = ~Group,
+    type = "bar"
+  )
+  fig <- fig %>%
+    layout(xaxis = list(title = "Fiscal Year"), 
+           yaxis = list(title = "Degrees Awarded"), 
+           barmode = "stack")
+  fig
+}
+```
+
+### Completions by Gender
+
+::: {.panel-tabset}
+
+### Associate's
+
+```{r}
+plotFunction(data = df_gender, degreeLevel = "Associates")
+```
+
+
+### Bachelor's
+
+```{r}
+plotFunction(data = df_gender, degreeLevel = "Bachelors")
+```
+
+
+### Master's
+
+```{r}
+plotFunction(data = df_gender, degreeLevel = "Masters")
+```
+
+
+### PhD
+
+```{r}
+plotFunction(data = df_gender, degreeLevel = "PhD")
+```
+
+
+:::
+
+### Completions by Citizenship Status
+
+::: {.panel-tabset}
+
+### Associate's
+
+```{r}
+plotFunction(data = df_citz, degreeLevel = "Associates")
+```
+
+
+### Bachelor's
+
+```{r}
+plotFunction(data = df_citz, degreeLevel = "Bachelors")
+```
+
+
+### Master's
+
+```{r}
+plotFunction(data = df_citz, degreeLevel = "Masters")
+```
+
+
+### PhD
+
+```{r}
+plotFunction(data = df_citz, degreeLevel = "PhD")
+```
+
+
+:::
+
+*Source: IPEDS Degree Completions Complete Data Files, FY 2011-24*
