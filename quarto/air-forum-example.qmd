@@ -11,8 +11,13 @@ execute:
 ---
 
 ```{r include=FALSE}
+# Install the following packages if necessary
+# install.packages(c("tidyverse", "plotly", "DT"))
+
+# Import libraries
 library(tidyverse)
 library(plotly)
+library(DT)
 
 # Import data
 df_gender <- read_csv("data_gender.csv")
@@ -20,22 +25,33 @@ df_citz <- read_csv("data_citz.csv")
 
 # Function to produce bar charts
 plotFunction <- function(data, degreeLevel) {
-  fig <- plot_ly(
+  plot_ly(
     data %>% filter(Level == degreeLevel),
     x = ~Year,
     y = ~Degrees,
     color = ~Group,
     type = "bar"
-  )
-  fig <- fig %>%
-    layout(xaxis = list(title = "Fiscal Year"), 
-           yaxis = list(title = "Degrees Awarded"), 
-           barmode = "stack")
-  fig
+  ) %>%
+    layout(
+      xaxis = list(title = "Fiscal Year"),
+      yaxis = list(title = "Degrees Awarded"),
+      barmode = "stack"
+    )
+}
+
+# Function to produce tables
+tableFunction <- function(data) {
+  data %>%
+    pivot_wider(names_from = Group, values_from = Degrees) %>%
+    mutate(Total = rowSums(pick(-Year, -Level), na.rm = TRUE)) %>%
+    arrange(desc(Year), Level) %>%
+    datatable(rownames = FALSE, options = list(pageLength = 5)) %>%
+    formatRound(columns = 3:5, digits = 0)
 }
 ```
 
-### Completions by Gender
+
+## Completions by Gender
 
 ::: {.panel-tabset}
 
@@ -66,10 +82,15 @@ plotFunction(data = df_gender, degreeLevel = "Masters")
 plotFunction(data = df_gender, degreeLevel = "PhD")
 ```
 
-
 :::
 
-### Completions by Citizenship Status
+```{r}
+tableFunction(data = df_gender)
+```
+
+
+
+## Completions by Citizenship Status
 
 ::: {.panel-tabset}
 
@@ -100,7 +121,10 @@ plotFunction(data = df_citz, degreeLevel = "Masters")
 plotFunction(data = df_citz, degreeLevel = "PhD")
 ```
 
-
 :::
 
+```{r}
+tableFunction(data = df_citz)
+```
+<br>
 *Source: IPEDS Degree Completions Complete Data Files, FY 2011-24*
