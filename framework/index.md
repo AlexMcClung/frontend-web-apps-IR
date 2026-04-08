@@ -41,4 +41,30 @@ Plot.plot({
 })
 ```
 
+```js
+const dataPivoted = aq
+  .from(sourceData)
+  .groupby(["Year", "Level"])
+  .pivot("Group", "Degrees")
+  .objects();
+```
+
+```js
+const withTotal = dataPivoted.map(row => ({
+  ...row,
+  Year: String(row.Year),
+  Total: selectedDemo === "Gender" 
+    ? row.Men + row.Women 
+    : row["Nonresident Alien"] + row["US Cit Perm Res"]
+}));
+```
+
+```js
+const search = view(Inputs.search(withTotal)) 
+```
+
+```js
+Inputs.table(search, {select: false, maxWidth: "60%"})
+```
+
 <small>Source: IPEDS Degree Completions Complete Data Files FY 2011-24</small>
