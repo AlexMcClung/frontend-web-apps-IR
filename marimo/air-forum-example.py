@@ -1,3 +1,12 @@
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#     "altair==6.0.0",
+#     "marimo",
+#     "polars==1.39.3",
+# ]
+# ///
+
 import marimo
 
 __generated_with = "0.20.4"
@@ -78,6 +87,17 @@ def _(alt, dd, df_display, mo, radio):
         title=f"{dd.value} Degrees by {radio.value}" # Dynamic title based on selections
     )
     mo.ui.altair_chart(chart)
+    return
+
+
+@app.cell
+def _(df_grp, pl):
+    df_pivoted = df_grp.pivot(index=["Year", "Level"], columns="Group", values="Degrees")
+    df_total = (df_pivoted.with_columns(
+        pl.col("Year").cast(pl.String),
+        Total = (pl.nth(2) + pl.nth(3))
+    ).sort("Year", descending=True))
+    df_total
     return
 
 
