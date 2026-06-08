@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+        
+
+        <link rel="stylesheet" href="mkslides-assets\reveal-js/dist/reveal.css" />
+
+        
+            <link rel="stylesheet" href="mkslides-assets\reveal-js\dist\theme\serif.css" />
+        
+        
+            <link rel="stylesheet" href="mkslides-assets\highlight-js-themes\monokai.css" />
+        
+
+        
+            
+                
+                    <link rel="stylesheet" href="slides.css" />
+                
+            
+        
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section data-markdown
+                
+                >
+                    <!-- The markdown must be placed to the whole left to prevent indentation issues like https://github.com/MartenBE/mkslides/issues/52 -->
+                    <textarea data-template>
+# Frontend Web Apps for IR
+
+Alex McClung, Yale University
+
+---
+
+## The Problem
+
+***"Can you make this [PDF or PowerPoint] report interactive?"***
+
+- Tools like R Shiny and Python Streamlit:
+  - Require specialized infrastructure  
+- Tools like Tableau and PowerBI:
+  - Struggle with reproducibility
+  - Difficult to programmatically generate multiple reports  
+  - Less flexible in terms of customization, choice of charting libraries 
+
+---
+
+## Where this approach fits
+
+> A lightweight alternative between non-interactive PDF/PPT reports and "full apps" (Shiny/Streamlit or Tableau/PowerBI)
+
+---
+
+## Concept: Static Web Apps
+
+- Self-contained web apps (HTML, CSS, and JavaScript files)  
+- Run entirely in the browser  
+- No specialized server, no runtime environment  
+- Can include filters, inputs, and interactive visuals  
+
+>This presentation is a static web app built with [MkSlides](https://martenbe.github.io/mkslides/) 🎉
+
+---
+
+## A Key Constraint
+
+- Data is packaged with your app during build time  
+- No live queries to databases  
+- No real-time updates  
+
+> ⛔ If you need live database interaction, this is not the right tool
+
+---
+
+## The Workflow
+
+### Notebook → Build → GitHub → Deploy
+
+- Data science notebooks: write code (R, Python, JavaScript) + narrative (Markdown)  
+- Build/render to HTML, CSS, and JavaScript  
+- Push files up to GitHub (or similar)   
+- Host or deploy pages right from GitHub repo  
+
+
+---
+
+## Same app using three approaches
+
+> Example using IPEDS degree completions by level and subgroup
+
+1. [Quarto](https://quarto.org/) + R  
+2. [marimo Python](https://docs.marimo.io/) (WebAssembly HTML export)  
+3. [Observable Framework](https://observablehq.com/framework/)  
+
+---
+
+## Demo: Quarto + R
+
+[https://alexmcclung.github.io/frontend-web-apps-IR/quarto/](https://alexmcclung.github.io/frontend-web-apps-IR/quarto/)
+<iframe src="https://alexmcclung.github.io/frontend-web-apps-IR/quarto/" width="1400" height="600"></iframe>
+
+---
+
+## Demo: marimo (WebAssembly HTML)
+
+[https://alexmcclung.github.io/frontend-web-apps-IR/marimo/](https://alexmcclung.github.io/frontend-web-apps-IR/marimo/)
+<iframe src="https://alexmcclung.github.io/frontend-web-apps-IR/marimo/" width="1400" height="600"></iframe>
+
+---
+
+## Demo: Observable Framework
+
+[https://alexmcclung.github.io/framework-app-example/](https://alexmcclung.github.io/framework-app-example/)
+<iframe src="https://alexmcclung.github.io/framework-app-example/" width="1400" height="600"></iframe>
+
+---
+
+## When to use each?
+
+**Quarto**
+- Lowest barrier to entry, more work to add interactivity  
+
+**marimo**
+- Python-first workflow, WebAssembly still evolving  
+
+**Observable Framework**
+- Most interactive and app-like, requires a version of JavaScript  
+
+---
+
+## More on deployment
+
+- Build step in the terminal: `quarto render`, `marimo export`, `npm run build`  
+
+- Output: static files (HTML, CSS, and JavaScript)
+
+- Deploy:
+  - GitHub or GitLab Pages (enterprise versions with SSO)
+  - From cloud storage (e.g., AWS S3 or Azure Blobs)  
+  - Any static hosting (e.g., Netlify or Cloudflare Pages)
+
+> No server required after deployment
+
+---
+
+## Key Takeaways
+
+- You don’t need a specialized server or a Docker container to build interactive tools  
+- You don't need expert frontend web development skills to create a real web app
+- You can use data science notebooks and GitHub to turn your analysis into an app 
+- ⚠️ Static web apps require pre-processed (staged) data  
+
+---
+
+# Q & A
+
+---
+
+# Thank You!
+
+<div>
+  <img src="img/qrcode_github.com.png" width=600>
+</div>
+<a href="https://github.com/AlexMcClung/frontend-web-apps-IR">
+  https://github.com/AlexMcClung/frontend-web-apps-IR
+</Sa>
+                    </textarea>
+                </section>
+            </div>
+        </div>
+        <script src="mkslides-assets\reveal-js/dist/reveal.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/highlight/highlight.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/markdown/markdown.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/math/math.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/notes/notes.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/search/search.js"></script>
+        <script src="mkslides-assets\reveal-js/plugin/zoom/zoom.js"></script>
+
+        
+            
+                
+            
+        
+
+        <script>
+            Reveal.initialize({
+                
+                    
+                        history: true,
+                    
+                        slideNumber: "c/t",
+                    
+                        height: 1080,
+                    
+                        width: 1920,
+                    
+                        transition: "slide",
+                    
+                
+                plugins: [
+                    RevealMarkdown, // Must come before the other plugins so they can hook into the generated HTML.
+                    RevealHighlight,
+                    RevealMath.KaTeX,
+                    RevealNotes,
+                    RevealSearch,
+                    RevealZoom,
+
+                    
+                        
+                            
+                        
+                    
+                ],
+            });
+        </script>
+    </body>
+</html>

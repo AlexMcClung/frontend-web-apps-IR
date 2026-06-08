@@ -1,0 +1,15 @@
+/* Headings */
+.reveal h1, .reveal h2 {
+  color: #00356B;
+}
+
+/* Links */
+.reveal a {
+  color: #3B82F6; /* medium blue */
+}
+
+.reveal blockquote {
+  border-left: 3px solid #93C5FD; /* lighter blue */
+  padding-left: 0.8rem;
+  color: #4B5563;
+}
